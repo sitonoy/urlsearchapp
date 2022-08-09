@@ -1,0 +1,59 @@
+{% extends "urlsearchapp/base.html"%}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+  <main>
+    <p>History page</p>
+    <div class = "container" id ="app">
+        <table  style="border-collapse: collapse", cellspacing="20">
+          <tr>
+              <th>Result</th>
+              <th>URL</th>
+              <th>Date</th>
+              <th>Pick</th>
+              <th>Delete</th>
+          </tr>
+          {% for list in Inputlist %}
+          <tr>
+              <td>{{ list.result }}</td>
+              <td>{{ list.URL }}</td>
+              <td>{{ list.registered_date}}</td>
+              <!-- Vue.jsのボタンを以下に追加 -->
+              <td>
+                <button type='button' :class='btnType' @click='changeBtnColor'>
+                  UP
+                </button>
+              </td>
+              <!-- 削除ボタン -->
+              <td>
+                <a href="{% url 'delete' list.pk %}">
+                  <button type='submit' class="btn btn-danger" value="削除">削除</button>
+                </a>
+              </td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+  </main>
+
+  <!-- JavaScriptコード -->
+  <script>
+    const app = new Vue({
+      //idとの紐付け
+      el: '#app',
+      //dataプロパティ
+      data: {
+        btnType: 'btn btn-lg btn-block btn-info',
+      },
+      //methodsプロパティ
+      methods: {
+        changeBtnColor() {
+          this.btnType = 'btn btn-lg btn-block btn-danger'
+        },
+      },
+    })
+  </script>
+{% endblock %}

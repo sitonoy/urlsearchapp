@@ -1,0 +1,46 @@
+{% extends "urlsearchapp/base.html"%}
+
+{% block title %}
+HOME
+{% endblock %}
+
+{% block content %}
+    <!-- コンテンツの作成 -->
+  <main>
+    <!-- 検索トップ -->
+    <section id="search">
+      <h1>Sevonate</h1>
+      <p>Make sure the sammary of specific URL.</p>
+      <div class="container" style="margin-top: 20px;">
+        <form method="POST" class="register-form ">{% csrf_token %}
+          <div class="row" style="margin-top:30px;">
+            <div class="range col-lg-6 offset-md-3">
+              {{ form }}
+            </div>
+          </div>
+        <!-- 送信（保存）ボタン-->
+          <button type="submit" class="save btn btn-primary offset-md-3" style="margin-top: 30px;">Search</button>
+        </form>
+      </div>
+      <button type="button" class="btn btn-light"><a href="{%url 'history' %}">History</a></button>
+      <button type="button" class="btn btn-light"><a href="{%url 'result' %}">Result</a></button>
+    </section>
+  </main>
+
+
+  <footer>
+    <h3>Contact us</h3>
+    <form>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1">
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </footer>
+</body>
+{% endblock %}
